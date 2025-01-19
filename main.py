@@ -31,4 +31,7 @@ url = "https://admin.soffstudy.uz/api/v1/gallery/?limit=9&offset=0"
 wss1 = WebScrapingStudy(url=url, token=token, chat_id=chat_id)
 
 wss1.run_script()
-assert
+
+
+
+
