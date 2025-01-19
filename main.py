@@ -32,6 +32,4 @@ wss1 = WebScrapingStudy(url=url, token=token, chat_id=chat_id)
 
 wss1.run_script()
 
-print('salom')
-
 
