@@ -25,11 +25,4 @@ class WebScrapingStudy:
             self.send_telegram_message(token=self.token, chat_id=self.chat_id, message=name)
         return responses
 
-token = '7944749152:AAHTbw9ojY1YQ7TE9QbYXJ2SaFfZOnNUELs'
-chat_id = 7478155511
-url = "https://admin.soffstudy.uz/api/v1/gallery/?limit=9&offset=0"
-wss1 = WebScrapingStudy(url=url, token=token, chat_id=chat_id)
-
-wss1.run_script()
-
 
