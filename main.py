@@ -1,28 +1,26 @@
-import requests
+import asyncio
+from aiogram import Dispatcher, Bot, F
+from aiogram.filters import Command
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
 
-class WebScrapingStudy:
+bot = Bot(token='7944749152:AAHTbw9ojY1YQ7TE9QbYXJ2SaFfZOnNUELs')
+dp = Dispatcher()
 
-    def __init__(self, url, token, chat_id):
-        self.token = token
-        self.chat_id = chat_id
-        self.url = url
+@dp.message(Command("start"))
+async def catch_command(message: Message):
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text="📞 Bog'lanish uchun malumot", callback_data="connect")]
+        ]
+    )
+    await message.answer("Salom sizga qanday yordam bera olaman", reply_markup=keyboard)
 
-    @staticmethod
-    def send_telegram_message(token, chat_id, message: str):
-        url = f"https://api.telegram.org/bot{token}/sendMessage"
-        data = {"chat_id": chat_id, "text": message}
-        requests.post(url=url, data=data)
 
-    @staticmethod
-    def get_json_data(url: str):
-        response = requests.get(url)
-        return response.json().get("data")
+async def main():
+    await dp.start_polling(bot)
 
-    def run_script(self):
-        responses = self.get_json_data(self.url)
-        for response in responses:
-            name = response.get("name")
-            self.send_telegram_message(token=self.token, chat_id=self.chat_id, message=name)
-        return responses
+if __name__ == "__main__":
+    asyncio.run(main())
+
 
 
